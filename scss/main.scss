@@ -1,0 +1,291 @@
+@import 'config';
+@import 'menu';
+
+
+*{
+	box-sizing: border-box;
+}
+body{
+	@include background;
+
+	background: $primary-color;
+	color: set-text-color($primary-color);
+	height: 100%;
+	margin: 0;
+	font-family: 'segoe UI', Tahoma, geneva, verdana, sans-serif;
+	line-height: 1.5;
+}
+//heading
+h1,h2,h3{
+	margin: 0;
+	font-weight: 400;
+	
+	&.lg-heading{
+		font-size: 6rem;
+	}
+	&.sm-heading{
+		margin-bottom: 2rem;
+		padding: 0.2rem 1rem;
+		background: rgba(lighten($primary-color, 2),0.5);
+	}
+}
+a{
+	color: white;
+	text-decoration: none;
+}
+#navbar{
+	position: fixed;
+	z-index: 2;
+	width: 100%;
+}
+.text-secondary{
+	color: $secondary-color;
+}
+.main-menu{
+	padding: 4rem;
+	height: 100%;
+	h3{
+		line-height: 25px;
+	}
+	.icon{
+		margin-top: 1rem;
+
+		a{
+			padding: 0.4rem;
+
+			&:hover{
+				color: $secondary-color;}
+				@include easeOut();
+		}
+	}
+	&#welcome-section{
+		top:0;
+		height:100vh;
+		overflow: hidden;
+		h1{
+			margin-top: 20vh;
+		}
+	}	
+}
+.main-menu{
+		&.close{
+			display: none;
+		}	
+}
+#welcome-section{
+	height:100vh;
+	transform: translate3d(0, -100%, 0);
+	@include easeOut;
+	&.show{
+		//slide in from top
+			transform: translate3d(0,0,0);
+			display: inline-block;
+		}
+}
+#about,#projects,#contact{
+	padding-top: 5rem;
+	display: none;
+	height: 100vh;
+	line-height: 1.05;
+	background: $primary-color;
+	transform: translate3d(0, -100%, 0);
+		@include easeOut;
+
+		&.show{
+			//slide in from top
+			
+			transform: translate3d(0,0,0);
+			display: inline-block;
+		}
+	.about-info{
+		display: grid;
+		grid-gap:10px;
+		grid-template-areas: 
+		'BIO EDUC'
+		'EXPR EXPR';
+		grid-template-columns: 1fr 1fr;
+		}
+	.lg-heading{
+		font-size: calc(0.7*6rem);
+
+	}
+	.sm-heading{
+		margin-bottom: 1.4rem;
+		padding: 0.14rem 0.7rem;
+	}
+	p{
+		font-size: 0.84rem;
+	}
+}
+
+
+.bio{
+	grid-area: BIO;
+	display: grid;
+	grid-template-areas: 'bioimg bioinfo';
+	grid-template-columns: 1fr 1fr;
+
+	.bio-img{
+		margin: auto;
+		width: 175px;
+		height: 175px;
+		border-radius: 50%;
+		border: solid 2.1px $secondary-color;
+		grid-area: bioimg;
+	}
+	.bio-info{
+		grid-area: bioinfo;
+		font-size: 0.84rem;
+		h3{
+			font-size: 1.4rem;
+		}
+	}
+}
+.education{
+	grid-area: EDUC;
+	display: grid;
+	grid-gap:17.5px;
+	grid-template-areas: 
+	'eduh2 eduh2'
+	'edu0 edu1';
+	grid-template-columns: 1fr 1fr;
+	.edu{
+	background: lighten($primary-color,5);
+	padding: 0.35rem;
+	border-bottom: $secondary-color 3.5px solid;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+}
+	h2{
+		font-size: 2.1rem;
+		grid-area: eduh2;
+		padding-bottom: 3.5px;
+		border-bottom: $secondary-color 1.4px solid;
+	}
+}		
+.work-exp{
+	grid-area:EXPR;
+	display: grid;
+	grid-gap: 17.5px;
+	grid-template-areas: 
+	'exph2 exph2 exph2 exph2'
+	'exp0 exp1 exp2 exp3';
+	grid-template-columns: repeat(4,1fr);
+	.exp{
+		background: lighten($primary-color,5);
+		padding: 0.35rem;
+		border-bottom: $secondary-color 3.5px solid;
+		border-bottom-right-radius: 7px;
+		border-bottom-left-radius: 7px;
+	}
+	h2{
+		font-size: 2.1rem;
+		padding-bottom: 3.5px;
+		grid-area: exph2;
+		border-bottom: $secondary-color 1.4px solid;
+	}
+}
+
+#projects{
+	display: none;
+
+	transform: translate3d(0, -100%, 0);
+		@include easeOut;
+
+		&.show{
+			//slide in from top
+			
+			transform: translate3d(0,0,0);
+			display: inline-block;
+			
+		}
+	.projects{
+		display: grid;	
+		grid-gap: 0.7rem; 
+		background: $primary-color;
+		grid-template-columns: repeat(4,1fr);
+		.project-title{
+			padding-top: 5px;
+			padding-bottom: 5px;
+			text-align: center;
+			height: 40px;
+		}
+		img{
+		width: 100%;
+		height: 25vh;
+		border: 3px white solid;
+
+			&:hover{
+				opacity: 0.5;
+				border-color: $secondary-color;
+				@include easeOut;
+			}
+		}
+	}
+}
+//Button Style
+.btn{
+	display: block;
+	padding: 0.5rem 1rem;
+	border: 0;
+	margin-bottom: 0.3rem;
+	&:hover {
+		background: $secondary-color;
+		color: set-text-color ($secondary-color);
+	}
+
+}
+#contact{
+	position: fixed;
+	top: 0;
+	width: 100vh;
+	opacity: 0.9;
+	visibility: hidden;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: top;
+	float: left;
+	width: 50%;
+	height: 100vh;
+	overflow: hidden;
+
+	&.show{
+		visibility: visible;
+	}
+	.boxes{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		align-items: center;
+		padding-top: 4rem;
+		div{
+			font-size: 2rem;
+			border: 2px solid white;
+			margin-bottom: 3rem;
+			text-align: center;
+			padding: 1.5rem 2.5rem;
+			@include easeOut;
+
+		}
+	}
+
+}
+#my_CV :hover{
+	color: $secondary-color;
+}
+.btn-dark{
+	@extend .btn;
+	background: lightin($primary-color,50);
+	color: white;
+}
+.btn-light{
+	@extend .btn;
+	background: white;
+	color: black;
+}
+
+@import 'mobile';
+
+
+
